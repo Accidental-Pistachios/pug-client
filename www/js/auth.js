@@ -1,6 +1,6 @@
 angular.module('pug.auth', [])
 
-.controller('AuthController', function ($scope, $window, $location, Auth, $state) {
+.controller('AuthController', function ($scope, $window, $location, Auth, $state, $ionicPopup) {
   $scope.user = {};
 
   $scope.login = function () {
@@ -24,7 +24,13 @@ angular.module('pug.auth', [])
     })
     .catch(function (error) {
       console.error(error);
+
+      $scope.showAlert = function() {
+       var alertPopup = $ionicPopup.alert({
+         template: 'Sorry about that. It looks like we already have the entered email on our records.'
+       });
+      };
+      $scope.showAlert();
     });
   };
-
 });
