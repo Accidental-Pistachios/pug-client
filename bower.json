@@ -6,6 +6,7 @@
     "ionic-timepicker": "^0.4.0"
   },
   "dependencies": {
-    "ngCordova": "^0.1.24-alpha"
+    "ngCordova": "^0.1.24-alpha",
+    "ionic-timepicker": "^0.4.0"
   }
 }
