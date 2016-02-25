@@ -16,3 +16,16 @@
 	color : red;
 	float :right;
 }
+
+.eventInfo{
+
+}
+
+.important{
+	font-weight : bold;
+}
+
+.notImportant{
+	font-size: 70%;
+	color : blue;
+}
