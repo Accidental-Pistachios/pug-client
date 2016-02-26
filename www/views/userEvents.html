@@ -1,5 +1,7 @@
 <ion-view name="user-events">
-  
+  <button ui-sref="map">
+  	Back
+  </button>
   <ion-list>
 	  <ion-item ng-repeat="event in userEvents" class="list list-inset">
 	  	<div>
@@ -9,7 +11,7 @@
 	  		{{event.data.skillLevel}}
 	  	</div>
 	  	<div>
-	  		{{event.data.startTime}}
+	  		{{format(event.data.startTime)}}
 	  	</div>
 	  	<div>
 	  		{{event.data.location}}

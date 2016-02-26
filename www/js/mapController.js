@@ -48,8 +48,18 @@ angular.module('pug.map', [])
     // Sets text that popups when marker is clicked
     google.maps.event.addListener(marker, 'click', (function(marker) {
         return function() {
-          // Button for adding event
-          infoWindow.setContent('<span id='+ event._id + '>Add Event</span>');
+  
+          var formattedDateTime = format(event.startTime);
+          var plural = (event.playerCount > 1) ? "players" : "player";
+          
+          var eventTypeArr = ["<div class='important'>", event.type ,"</div>"].join('');
+          var playerCountArr = ["<div class='important'>", event.playerCount, " " , plural, "</div>"].join('');
+          var eventStartTimeArr = ["<div class='notImportant'>", formattedDateTime ,"</div>"].join('');
+          var locationArr = ["<div class='notImportant'>", event.location ,"</div>"].join('');
+          var skillLevelArr = ["<div class='notImportant'>", event.skillLevel ,"</div>"].join('');
+
+          var allInfoArr = [eventTypeArr, playerCountArr, eventStartTimeArr, locationArr, skillLevelArr].join('');
+          infoWindow.setContent("<div class='container'>" + allInfoArr + "</div>");
           infoWindow.open($scope.map, marker);
           var contentBox = document.getElementById(event._id);
           contentBox.addEventListener("click", function() {
@@ -82,4 +92,36 @@ angular.module('pug.map', [])
     Auth.logout();
   };
 });
+
+
+function format(startTime){
+  var start = new Date(startTime);
+  var date = start.toString().split(' ').slice(0,3);
+  var time = start.toString().split(' ')[4];
+  var formattedTime = time.split(':');
+  var hours = Number(formattedTime[0]);
+  var minutes = formattedTime[1];
+  var append;
+
+  if(hours > 12){
+    hours-=12;
+    append = 'PM';
+  } else {
+    append = 'AM';
+  }
+
+  formattedTime = [hours, minutes].join(':') + ' ' + append;
+  date.push(formattedTime);
+
+  return date.join(' ');  
+};
+
+
+
+
+
+
+
+
+
 
