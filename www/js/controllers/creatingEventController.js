@@ -36,18 +36,11 @@ angular.module('creatingEvent', [])
     if (typeof (val) === 'undefined') {
       console.log('Time not selected');
     } else {
-      var today = new Date();
-      var timeZoneDiff = today.getTimezoneOffset() / 60;
-      var hour = parseInt(val/3600);
-      var minute = (val - hour*3600) / 60;
-      today.setUTCHours(hour + timeZoneDiff);
-      today.setUTCMinutes(minute);
-      today.setUTCSeconds(0);
+      var startDate = timeFormatService.createDate(val);
       $scope.showStartTime = true;
-      $scope.createdEvent.startTime = today;
-      var space = ' ';
-      var displayT = timeFormatService.formatTime(today);
-      $scope.displayStartTime = space + ' is ' + displayT;
+      $scope.createdEvent.startTime = startDate;
+      var displayTime = timeFormatService.formatTime(startDate);
+      $scope.displayStartTime = ' is ' + displayTime;
     }
   }
 
@@ -55,18 +48,11 @@ angular.module('creatingEvent', [])
     if (typeof (val) === 'undefined') {
       console.log('Time not selected');
     } else {
-      var today = new Date();
-      var timeZoneDiff = today.getTimezoneOffset() / 60;
-      var hour = parseInt(val/3600);
-      var minute = (val - hour*3600) / 60;
-      today.setUTCHours(hour + timeZoneDiff);
-      today.setUTCMinutes(minute);
-      today.setUTCSeconds(0);
+      var endDate = timeFormatService.createDate(val);
       $scope.showEndTime = true;
-      $scope.createdEvent.endTime = today;
-      var space = ' ';
-      var displayT = timeFormatService.formatTime(today);
-      $scope.displayEndTime = space + ' is ' + displayT;
+      $scope.createdEvent.endTime = endDate;
+      var displayTime = timeFormatService.formatTime(endDate);
+      $scope.displayEndTime = ' is ' + displayTime;
     }
   }
 

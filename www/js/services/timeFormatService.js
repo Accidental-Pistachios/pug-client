@@ -1,9 +1,17 @@
 angular.module('pug.timeFormatService', [])
 
 .factory('timeFormatService', function(){
+  function createDate(val) {
+    var today = new Date();
+    var hour = parseInt(val/3600);
+    var minute = (val - hour*3600) / 60;
+    today.setHours(hour);
+    today.setMinutes(minute);
+    today.setSeconds(0);
+    return today;
+  }
 
   var formatTime = function(startTime){
-
     var start = new Date(startTime);
     var date = start.toString().split(' ').slice(0,3);
     var time = start.toString().split(' ')[4];
@@ -28,12 +36,10 @@ angular.module('pug.timeFormatService', [])
     date.push(formattedTime);
 
     return date.join(' ');
-
   };
-
 
   return {
+    createDate: createDate,
     formatTime : formatTime
   };
-
 });
